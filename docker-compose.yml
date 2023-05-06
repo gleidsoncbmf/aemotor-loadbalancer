@@ -1,0 +1,39 @@
+services:
+  loadbalancer:
+    image: nginx:1.23.1-alpine
+    container_name: loadbalancer
+    volumes:
+    - ./default.conf:/etc/nginx/conf.d/default.conf
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    # - ./default.conf:/etc/nginx/conf.d/default.conf -> container
+    ports:
+      - "8000:80"
+  node1:
+    image: nginx:1.23.1-alpine
+    container_name: node1
+    volumes:
+       - /home/gleidson/loadbalancer/build/aemotor-reactjs/build:/usr/share/nginx/html
+    ports:
+      - "80"
+  node2:
+    image: nginx:1.23.1-alpine
+    container_name: node2
+    volumes:
+       - /home/gleidson/loadbalancer/build/aemotor-reactjs/build:/usr/share/nginx/html
+    ports:
+      - "80"
+  node3:
+    image: nginx:1.23.1-alpine
+    container_name: node3
+    volumes:
+       - /home/gleidson/loadbalancer/build/aemotor-reactjs/build:/usr/share/nginx/html
+    ports:
+      - "80"
+  node4:
+    image: nginx:1.23.1-alpine
+    container_name: node4
+    volumes:
+       - /home/gleidson/loadbalancer/build/aemotor-reactjs/build:/usr/share/nginx/html
+    ports:
+      - "80"
+ 
